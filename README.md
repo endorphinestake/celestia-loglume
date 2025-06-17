@@ -408,7 +408,7 @@ Perform these steps in Kibana’s **Dev Tools** console or via the Elasticsearch
 Create a lifecycle policy named **`celestia-logs-policy`** that rolls over indices daily or at 1 GB, and deletes indices older than 7 days:
 
 ```json
-PUT _ilm/policy/celestia-logs-policy
+curl -u $ES_USER:$ES_PASS -X PUT "$ES_HOST/_ilm/policy/celestia-logs-policy" -H 'Content-Type: application/json' -d '
 {
   "policy": {
     "phases": {
@@ -427,7 +427,7 @@ PUT _ilm/policy/celestia-logs-policy
       }
     }
   }
-}
+}'
 ```
 
 This policy will rollover to a new index when an index grows beyond 1 GB or ages beyond 1 day (whichever comes first), and will delete indices older than 7 days.
@@ -437,7 +437,7 @@ This policy will rollover to a new index when an index grows beyond 1 GB or ages
 Create index templates for the two indices (`celestia-logs-full` and `celestia-logs-bridge`) so that new indices use our ILM policy and appropriate settings:
 
 ```json
-PUT /_index_template/celestia-logs-full-template
+curl -u $ES_USER:$ES_PASS -X PUT "$ES_HOST/_index_template/celestia-logs-full-template" -H 'Content-Type: application/json' -d '
 {
   "index_patterns": ["celestia-logs-full-*"],
   "template": {
@@ -452,9 +452,9 @@ PUT /_index_template/celestia-logs-full-template
       }
     }
   }
-}
+}'
 
-PUT /_index_template/celestia-logs-bridge-template
+curl -u $ES_USER:$ES_PASS -X PUT "$ES_HOST/_index_template/celestia-logs-bridge-template" -H 'Content-Type: application/json' -d '
 {
   "index_patterns": ["celestia-logs-bridge-*"],
   "template": {
@@ -469,7 +469,7 @@ PUT /_index_template/celestia-logs-bridge-template
       }
     }
   }
-}
+}'
 ```
 
 These templates ensure any index matching `celestia-logs-full-*` or `celestia-logs-bridge-*` will use the lifecycle policy and have 1 shard, 0 replicas (since we likely have a single-node cluster for logs).
@@ -479,19 +479,19 @@ These templates ensure any index matching `celestia-logs-full-*` or `celestia-lo
 Bootstrap the initial indices for each log type and assign the write alias:
 
 ```json
-PUT celestia-logs-full-000001
+curl -u $ES_USER:$ES_PASS -X PUT "$ES_HOST/celestia-logs-full-000001" -H 'Content-Type: application/json' -d '
 {
   "aliases": {
     "celestia-logs-full": { "is_write_index": true }
   }
-}
+}'
 
-PUT celestia-logs-bridge-000001
+curl -u $ES_USER:$ES_PASS -X PUT "$ES_HOST/celestia-logs-bridge-000001" -H 'Content-Type: application/json' -d '
 {
   "aliases": {
     "celestia-logs-bridge": { "is_write_index": true }
   }
-}
+}'
 ```
 
 This creates `celestia-logs-full-000001` and `celestia-logs-bridge-000001` as the first indices and sets the aliases `celestia-logs-full` and `celestia-logs-bridge` to point to them for incoming writes. Elasticsearch will then roll over to `...000002` when conditions are met (per the ILM policy).
