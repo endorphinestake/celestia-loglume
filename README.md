@@ -1,5 +1,8 @@
   # Celestia-Logs ELK Monitoring
 
+![Preview](./assets/1.png)
+
+
 > **Goal:** Step-by-step setup of centralized log collection and monitoring for **Celestia** nodes (Bridge and Full) using Elasticsearch, Kibana, and Fluent Bit.
 
 ## Contents
@@ -754,3 +757,4 @@ You can maintain these files in a Git repository for version control. Adjust con
 ## Contacts & contribution
 
 For any issues, questions, or contributions to this logging setup guide, please reach out or open an issue/PR in the corresponding repository. Community contributions are welcome to keep the guide up-to-date with Celestia’s developments and to add support for additional use-cases or refinements.
+
