@@ -3,7 +3,7 @@
 ![Preview](./assets/1.png)
 
 
-> **Goal:** Step-by-step setup of centralized log collection and monitoring for **Celestia** nodes (Bridge and Full) using Elasticsearch, Kibana, and Fluent Bit.
+> **Goal:** Step-by-step setup of centralized log collection and monitoring for **Celestia** nodes using Elasticsearch, Kibana, and Fluent Bit.
 
 ## Contents
 
