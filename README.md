@@ -1,4 +1,4 @@
-  # Celestia-Logs ELK Monitoring
+  # Celestia-Logs EFK Monitoring
 
 ![Preview](./assets/1.png)
 
@@ -84,7 +84,7 @@
    apt update && apt upgrade -y
    ```
 
-   This ensures all system packages are up-to-date before installing the ELK components.
+   This ensures all system packages are up-to-date before installing the EFK components.
 
 ## Installing Elasticsearch & Kibana on Server A
 
