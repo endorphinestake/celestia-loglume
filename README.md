@@ -620,7 +620,7 @@ This dashboard can now serve as a monitoring pane for your Celestia node logs.
 If you want to share the Kibana dashboard publicly (read-only), you can set up an **anonymous user** in Kibana/Elasticsearch. This allows anyone to view the dashboard without login.
 
 For example, a demo instance is available here:
-👉 **Demo (Read-Only):** [https://celestia-loglume.endorphinestake.com](https://celestia-loglume.endorphinestake.com)
+👉 **Demo (Read-Only):** [https://celestia-loglume.endorphinestake.com](https://celestia-loglume.endorphinestake.com/app/dashboards#/view/de3635b8-6896-4d58-8a56-a91c05e4df0d?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now)))
 
 To enable anonymous read-only access on your Kibana:
 
