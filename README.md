@@ -758,3 +758,5 @@ You can maintain these files in a Git repository for version control. Adjust con
 
 For any issues, questions, or contributions to this logging setup guide, please reach out or open an issue/PR in the corresponding repository. Community contributions are welcome to keep the guide up-to-date with Celestia’s developments and to add support for additional use-cases or refinements.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
